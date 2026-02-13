@@ -10,11 +10,13 @@ public class GiocoBandiere {
     private ArrayList<QuizOption> domande;
     private int punteggio;
     private ArrayList<Integer> fatte;
+    private int status;
 
     public GiocoBandiere() {
         domande = new ArrayList<>();
         fatte = new ArrayList<>();
         punteggio = 0;
+        status = 1;
         caricaDomandeDaFile("/bandiere.txt");
     }
 
@@ -50,6 +52,7 @@ public class GiocoBandiere {
 
     public QuizOption getRandomOpzione() {
         if (fatte.size() == domande.size()) {
+            status = 2;
             return null;
         }
         int random_index = (int) (Math.random() * domande.size());
@@ -58,5 +61,24 @@ public class GiocoBandiere {
         }
         fatte.add(random_index);
         return domande.get(random_index);
+    }
+
+    public boolean isFinished() {
+        if (status == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public void addPoint() {
+        this.punteggio++;
+    }
+
+    public int getPunteggio() {
+        return punteggio;
+    }
+
+    public int getTotale() {
+        return domande.size();
     }
 }

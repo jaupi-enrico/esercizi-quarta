@@ -1,6 +1,8 @@
 package com.bandiere.bandiere;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,6 +16,21 @@ public class BandiereController {
     ArrayList<RadioButton> opzioni = new ArrayList<>();
 
     @FXML
+    private static ImageView imgHolder;
+    @FXML
+    private static RadioButton opzione1;
+    @FXML
+    private static RadioButton opzione2;
+    @FXML
+    private static RadioButton opzione3;
+    @FXML
+    private static RadioButton opzione4;
+    @FXML
+    private static Button nextButton;
+    @FXML
+    private static Label lbStatus;
+
+    @FXML
     private void initialize() {
         opzione_attuale = game.getRandomOpzione();
         opzioni.add(opzione1);
@@ -22,17 +39,6 @@ public class BandiereController {
         opzioni.add(opzione4);
         set_opzione();
     }
-
-    @FXML
-    private ImageView imgHolder;
-    @FXML
-    private RadioButton opzione1;
-    @FXML
-    private RadioButton opzione2;
-    @FXML
-    private RadioButton opzione3;
-    @FXML
-    private RadioButton opzione4;
 
     @FXML
     public void setImg(String imgSrc) {
@@ -54,20 +60,49 @@ public class BandiereController {
         setImg(opzione_attuale.getImgSrc());
     }
 
+    static public void timerScaduto() {
+
+    }
+
+    static public void timeUpdate(int tempoRimanente) {
+        lbStatus.setText(Integer.toString(tempoRimanente));
+    }
+
     @FXML
     protected void onNextButtonClick() {
+        String selected = null;
+        for (RadioButton rb : opzioni) {
+            if (rb.isSelected()) {
+                selected = rb.getText();
+                break;
+            }
+        }
+        if (selected == null) {
+            return;
+        }
+        if (opzione_attuale.checkCorretta(selected)) {
+            game.addPoint();
+        }
         opzione_attuale = game.getRandomOpzione();
         if (opzione_attuale != null) {
             set_opzione();
-
             for (RadioButton rb : opzioni) {
                 rb.setSelected(false);
             }
         }
         else {
-            return;
+            if (game.isFinished()) {
+                showResult();
+            }
         }
     }
 
-
+    private void showResult() {
+        imgHolder.setVisible(false);
+        nextButton.setVisible(false);
+        for (RadioButton rb : opzioni) {
+            rb.setVisible(false);
+        }
+        lbStatus.setText("Fine " + game.getPunteggio() + "/" + game.getTotale());
+    }
 }
