@@ -1,5 +1,6 @@
 package com.bandiere.bandiere;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class QuizOption {
     private String imgSrc;
@@ -16,12 +17,12 @@ public class QuizOption {
         return s.equals(opzioneCorretta);
     }
 
-    public ArrayList<String> getOpzioni() {
-        return opzioni;
+    public void shuffle() {
+        Collections.shuffle(opzioni);
     }
 
-    public String getOpzioni(int index) {
-        return getOpzioni().get(index);
+    public ArrayList<String> getOpzioni() {
+        return opzioni;
     }
 
     public String getImgSrc() {

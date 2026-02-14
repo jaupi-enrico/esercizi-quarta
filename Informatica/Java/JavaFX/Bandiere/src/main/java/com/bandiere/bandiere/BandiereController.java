@@ -16,19 +16,21 @@ public class BandiereController {
     ArrayList<RadioButton> opzioni = new ArrayList<>();
 
     @FXML
-    private static ImageView imgHolder;
+    private ImageView imgHolder;
     @FXML
-    private static RadioButton opzione1;
+    private RadioButton opzione1;
     @FXML
-    private static RadioButton opzione2;
+    private RadioButton opzione2;
     @FXML
-    private static RadioButton opzione3;
+    private RadioButton opzione3;
     @FXML
-    private static RadioButton opzione4;
+    private RadioButton opzione4;
     @FXML
-    private static Button nextButton;
+    private Button nextButton;
     @FXML
-    private static Label lbStatus;
+    private Label lbStatus;
+
+    private Timing time;
 
     @FXML
     private void initialize() {
@@ -38,6 +40,8 @@ public class BandiereController {
         opzioni.add(opzione3);
         opzioni.add(opzione4);
         set_opzione();
+
+        time = new Timing(15, lbStatus, this);
     }
 
     @FXML
@@ -54,22 +58,19 @@ public class BandiereController {
     }
 
     private void set_opzione() {
+        opzione_attuale.shuffle();
         for (int i = 0; i < opzioni.size(); i++) {
-            opzioni.get(i).setText(opzione_attuale.getOpzioni(i));
+            opzioni.get(i).setText(opzione_attuale.getOpzioni().get(i));
         }
         setImg(opzione_attuale.getImgSrc());
     }
 
-    static public void timerScaduto() {
-
-    }
-
-    static public void timeUpdate(int tempoRimanente) {
-        lbStatus.setText(Integer.toString(tempoRimanente));
-    }
-
     @FXML
     protected void onNextButtonClick() {
+        nextQuestion(false);
+    }
+
+    public void nextQuestion(boolean bypass) {
         String selected = null;
         for (RadioButton rb : opzioni) {
             if (rb.isSelected()) {
@@ -77,10 +78,10 @@ public class BandiereController {
                 break;
             }
         }
-        if (selected == null) {
+        if (!bypass && selected == null) {
             return;
         }
-        if (opzione_attuale.checkCorretta(selected)) {
+        if (!bypass && opzione_attuale.checkCorretta(selected)) {
             game.addPoint();
         }
         opzione_attuale = game.getRandomOpzione();
@@ -89,9 +90,11 @@ public class BandiereController {
             for (RadioButton rb : opzioni) {
                 rb.setSelected(false);
             }
+            time.start(15);
         }
         else {
             if (game.isFinished()) {
+                time.stop();
                 showResult();
             }
         }

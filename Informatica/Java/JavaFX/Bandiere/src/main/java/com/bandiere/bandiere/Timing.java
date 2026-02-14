@@ -1,32 +1,54 @@
 package com.bandiere.bandiere;
 
+import javafx.application.Platform;
+import javafx.scene.control.Label;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Timing {
+
     private Timer timer;
+    private TimerTask task;
     private int tempoRimanente;
+    private Label label;
+    private BandiereController controller;
 
-
-    public Timing(int secondi) {
-        timer = new Timer();
-        tempoRimanente = secondi;
-        timer.schedule(task2, 1000);
-        timer.schedule(task1, secondi * 1000);
+    public Timing(int secondi, Label label, BandiereController controller) {
+        this.label = label;
+        this.controller = controller;
+        start(secondi);
     }
 
-    TimerTask task1 = new TimerTask() {
-        @Override
-        public void run() {
-            BandiereController.timerScaduto();
-        }
-    };
+    public void start(int secondi) {
+        stop();
 
-    TimerTask task2 = new TimerTask() {
-        @Override
-        public void run() {
-            BandiereController.timeUpdate(tempoRimanente);
-            timer.schedule(task2, 1000);
-        }
-    };
+        tempoRimanente = secondi;
+        label.setText(String.valueOf(tempoRimanente));
+
+        timer = new Timer();
+
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                tempoRimanente--;
+
+                Platform.runLater(() -> {
+                    label.setText(String.valueOf(tempoRimanente));
+                });
+
+                if (tempoRimanente <= 0) {
+                    stop();
+                    Platform.runLater(() -> controller.nextQuestion(true));
+                }
+            }
+        };
+
+        timer.scheduleAtFixedRate(task, 1000, 1000);
+    }
+
+    public void stop() {
+        if (task != null) task.cancel();
+        if (timer != null) timer.cancel();
+    }
 }
