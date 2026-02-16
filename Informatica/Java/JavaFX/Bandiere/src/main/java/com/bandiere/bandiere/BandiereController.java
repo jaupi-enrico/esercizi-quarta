@@ -41,7 +41,7 @@ public class BandiereController {
         opzioni.add(opzione4);
         set_opzione();
 
-        time = new Timing(15, lbStatus, this);
+        time = new Timing(10, lbStatus, this);
     }
 
     @FXML
@@ -90,7 +90,7 @@ public class BandiereController {
             for (RadioButton rb : opzioni) {
                 rb.setSelected(false);
             }
-            time.start(15);
+            time.start(10);
         }
         else {
             if (game.isFinished()) {
@@ -106,6 +106,6 @@ public class BandiereController {
         for (RadioButton rb : opzioni) {
             rb.setVisible(false);
         }
-        lbStatus.setText("Fine " + game.getPunteggio() + "/" + game.getTotale());
+        lbStatus.setText("Punteggio: " + game.getPunteggio() + "/" + game.getTotale());
     }
 }
