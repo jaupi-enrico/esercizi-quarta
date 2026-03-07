@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="479.0" prefWidth="623.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prenotazionecampeggio.prenotazionecampeggio.CampeggioController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="GESTORE PRENOTAZIONI DEL CAMPEGGIO">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="281.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Nome:" />
+                        <TextField fx:id="nameTextField">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Data inizio:" />
+                        <DatePicker fx:id="inizioDatePicker">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></DatePicker>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Data fine:" />
+                        <DatePicker fx:id="fineDatePicker">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></DatePicker>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Numero piazzola:" />
+                        <TextField fx:id="piazzolaTextField">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></TextField>
+                     </children>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets right="20.0" />
+               </opaqueInsets>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="262.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Tipo di attrezzatura:" />
+                        <ChoiceBox fx:id="attrezzaturaChoiceBox" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></ChoiceBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Animali:" />
+                        <CheckBox fx:id="animaliCheckBox" mnemonicParsing="false">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></CheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Numero di adulti:" />
+                        <TextField fx:id="adultiTextField">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Numero di cambini:" />
+                        <TextField fx:id="bambiniTextField">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets left="200.0" />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </HBox>
+      <Label fx:id="lblRisultato" text="Label" visible="false" />
+      <HBox alignment="BOTTOM_CENTER" prefHeight="32.0" prefWidth="583.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#calcolaPrezzo" text="Calcola Prezzo">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin></Button>
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#prenota" text="Prenota">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin></Button>
+            <Button layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#showPrenotazioni" text="Visualizza Prenotazioni" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
