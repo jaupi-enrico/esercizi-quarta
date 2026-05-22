@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.radio-group label,
+.checkbox label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #0077cc;
+    color: white;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #005fa3;
+}
+
+.azioni {
+    margin-top: 20px;
+    text-align: center;
+}
+
+ul {
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+li button {
+    margin-left: 10px;
+    background-color: crimson;
+}
+
+li button:hover {
+    background-color: darkred;
+}

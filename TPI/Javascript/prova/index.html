@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iscrizione ai corsi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Iscrizione ai corsi</h1>
+
+        <form id="formIscrizione">
+
+            <div class="campo">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" required>
+            </div>
+
+            <div class="campo">
+                <label for="cognome">Cognome</label>
+                <input type="text" id="cognome" required>
+            </div>
+
+            <div class="campo">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="campo">
+                <label for="corso">Corso scelto</label>
+                <select id="corso" required>
+                    <option value="">-- Seleziona un corso --</option>
+                    <option value="python">Maggio - Corso base Python</option>
+                    <option value="javascript">Giugno - Corso base JavaScript</option>
+                    <option value="html_css">Luglio - Corso HTML e CSS</option>
+                    <option value="cpp">Settembre - Corso base C++</option>
+                    <option value="database">Ottobre - Corso basi di database</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label>Modalità del corso</label>
+
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="modalita" value="In presenza" required>
+                        In presenza
+                    </label>
+
+                    <label>
+                        <input type="radio" name="modalita" value="Online">
+                        Online
+                    </label>
+                </div>
+            </div>
+
+            <div class="campo checkbox">
+                <label>
+                    <input type="checkbox" id="newsletter">
+                    Iscrizione alla newsletter
+                </label>
+            </div>
+
+            <button type="submit">Iscriviti</button>
+        </form>
+
+        <div class="azioni">
+            <button id="eliminaTutti">Elimina tutti</button>
+        </div>
+
+        <h2>Elenco iscrizioni</h2>
+
+        <ul id="listaIscrizioni"></ul>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
